@@ -13,7 +13,11 @@ import kotlinx.html.attributes.*
 *******************************************************************************/
 
 @Suppress("unused")
-open class I(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("i", consumer, initialAttributes, null, true, false), HtmlBlockInlineTag {
+interface I_I {
+    val consumer : TagConsumer<*>
+}
+@Suppress("unused")
+open class I(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : I_I, HTMLTag("i", consumer, initialAttributes, null, true, false), HtmlBlockInlineTag {
 
 }
 val I.asFlowContent : FlowContent
@@ -24,7 +28,11 @@ val I.asPhrasingContent : PhrasingContent
 
 
 @Suppress("unused")
-open class IFRAME(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("iframe", consumer, initialAttributes, null, true, false), CommonAttributeGroupFacadeFlowInteractivePhrasingContent {
+interface I_IFRAME {
+    val consumer : TagConsumer<*>
+}
+@Suppress("unused")
+open class IFRAME(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : I_IFRAME, HTMLTag("iframe", consumer, initialAttributes, null, true, false), CommonAttributeGroupFacadeFlowInteractivePhrasingContent {
     var name : String
         get()  = attributeStringString[this, "name"]
         set(newValue) {attributeStringString[this, "name"] = newValue}
@@ -62,7 +70,11 @@ val IFRAME.asPhrasingContent : PhrasingContent
 
 
 @Suppress("unused")
-open class IMG(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("img", consumer, initialAttributes, null, true, true), CommonAttributeGroupFacadeFlowInteractivePhrasingContent {
+interface I_IMG {
+    val consumer : TagConsumer<*>
+}
+@Suppress("unused")
+open class IMG(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : I_IMG, HTMLTag("img", consumer, initialAttributes, null, true, true), CommonAttributeGroupFacadeFlowInteractivePhrasingContent {
     var alt : String
         get()  = attributeStringString[this, "alt"]
         set(newValue) {attributeStringString[this, "alt"] = newValue}
@@ -104,7 +116,11 @@ val IMG.asPhrasingContent : PhrasingContent
 
 
 @Suppress("unused")
-open class INPUT(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("input", consumer, initialAttributes, null, true, true), CommonAttributeGroupFacadeFlowInteractivePhrasingContent {
+interface I_INPUT {
+    val consumer : TagConsumer<*>
+}
+@Suppress("unused")
+open class INPUT(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : I_INPUT, HTMLTag("input", consumer, initialAttributes, null, true, true), CommonAttributeGroupFacadeFlowInteractivePhrasingContent {
     var type : InputType
         get()  = attributeInputTypeEnumInputTypeValues[this, "type"]
         set(newValue) {attributeInputTypeEnumInputTypeValues[this, "type"] = newValue}
@@ -242,7 +258,11 @@ val INPUT.asPhrasingContent : PhrasingContent
 
 
 @Suppress("unused")
-open class INS(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("ins", consumer, initialAttributes, null, false, false), HtmlBlockInlineTag {
+interface I_INS {
+    val consumer : TagConsumer<*>
+}
+@Suppress("unused")
+open class INS(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : I_INS, HTMLTag("ins", consumer, initialAttributes, null, false, false), HtmlBlockInlineTag {
     var cite : String
         get()  = attributeStringString[this, "cite"]
         set(newValue) {attributeStringString[this, "cite"] = newValue}

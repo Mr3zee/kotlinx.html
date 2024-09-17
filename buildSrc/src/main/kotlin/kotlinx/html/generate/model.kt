@@ -120,6 +120,7 @@ data class TagInfo(
     val tagGroupNames: List<String>,
 ) {
     val className: String = name.humanize().uppercase()
+    val interfaceName: String = "I_$className"
     val memberName: String = name.humanize().replaceIfReserved()
 }
 

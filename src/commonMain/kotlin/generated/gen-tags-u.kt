@@ -13,7 +13,11 @@ import kotlinx.html.attributes.*
 *******************************************************************************/
 
 @Suppress("unused")
-open class U(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("u", consumer, initialAttributes, null, true, false), HtmlBlockInlineTag {
+interface I_U {
+    val consumer : TagConsumer<*>
+}
+@Suppress("unused")
+open class U(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : I_U, HTMLTag("u", consumer, initialAttributes, null, true, false), HtmlBlockInlineTag {
 
 }
 val U.asFlowContent : FlowContent
@@ -24,7 +28,11 @@ val U.asPhrasingContent : PhrasingContent
 
 
 @Suppress("unused")
-open class UL(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("ul", consumer, initialAttributes, null, false, false), HtmlBlockTag {
+interface I_UL {
+    val consumer : TagConsumer<*>
+}
+@Suppress("unused")
+open class UL(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : I_UL, HTMLTag("ul", consumer, initialAttributes, null, false, false), HtmlBlockTag {
 
 }
 /**
@@ -32,7 +40,7 @@ open class UL(initialAttributes : Map<String, String>, override val consumer : T
  */
 @HtmlTagMarker
 @OptIn(ExperimentalContracts::class)
-inline fun UL.li(classes : String? = null, crossinline block : LI.() -> Unit = {}) : Unit {
+inline fun I_UL.li(classes : String? = null, crossinline block : LI.() -> Unit = {}) : Unit {
     contract { callsInPlace(block, InvocationKind.EXACTLY_ONCE) }
     LI(attributesMapOf("class", classes), consumer).visit(block)
 }

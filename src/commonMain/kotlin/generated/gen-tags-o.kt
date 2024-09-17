@@ -13,7 +13,11 @@ import kotlinx.html.attributes.*
 *******************************************************************************/
 
 @Suppress("unused")
-open class OBJECT(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("object", consumer, initialAttributes, null, true, false), CommonAttributeGroupFacadeFlowInteractivePhrasingContent {
+interface I_OBJECT {
+    val consumer : TagConsumer<*>
+}
+@Suppress("unused")
+open class OBJECT(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : I_OBJECT, HTMLTag("object", consumer, initialAttributes, null, true, false), CommonAttributeGroupFacadeFlowInteractivePhrasingContent {
     var data : String
         get()  = attributeStringString[this, "data"]
         set(newValue) {attributeStringString[this, "data"] = newValue}
@@ -53,7 +57,7 @@ open class OBJECT(initialAttributes : Map<String, String>, override val consumer
  */
 @HtmlTagMarker
 @OptIn(ExperimentalContracts::class)
-inline fun OBJECT.param(name : String? = null, value : String? = null, classes : String? = null, crossinline block : PARAM.() -> Unit = {}) : Unit {
+inline fun I_OBJECT.param(name : String? = null, value : String? = null, classes : String? = null, crossinline block : PARAM.() -> Unit = {}) : Unit {
     contract { callsInPlace(block, InvocationKind.EXACTLY_ONCE) }
     PARAM(attributesMapOf("name", name,"value", value,"class", classes), consumer).visit(block)
 }
@@ -69,7 +73,11 @@ val OBJECT.asPhrasingContent : PhrasingContent
 
 
 @Suppress("unused")
-open class OL(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("ol", consumer, initialAttributes, null, false, false), HtmlBlockTag {
+interface I_OL {
+    val consumer : TagConsumer<*>
+}
+@Suppress("unused")
+open class OL(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : I_OL, HTMLTag("ol", consumer, initialAttributes, null, false, false), HtmlBlockTag {
     var start : String
         get()  = attributeStringString[this, "start"]
         set(newValue) {attributeStringString[this, "start"] = newValue}
@@ -85,14 +93,18 @@ open class OL(initialAttributes : Map<String, String>, override val consumer : T
  */
 @HtmlTagMarker
 @OptIn(ExperimentalContracts::class)
-inline fun OL.li(classes : String? = null, crossinline block : LI.() -> Unit = {}) : Unit {
+inline fun I_OL.li(classes : String? = null, crossinline block : LI.() -> Unit = {}) : Unit {
     contract { callsInPlace(block, InvocationKind.EXACTLY_ONCE) }
     LI(attributesMapOf("class", classes), consumer).visit(block)
 }
 
 
 @Suppress("unused")
-open class OPTGROUP(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("optgroup", consumer, initialAttributes, null, true, false), CommonAttributeGroupFacade {
+interface I_OPTGROUP {
+    val consumer : TagConsumer<*>
+}
+@Suppress("unused")
+open class OPTGROUP(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : I_OPTGROUP, HTMLTag("optgroup", consumer, initialAttributes, null, true, false), CommonAttributeGroupFacade {
     var disabled : Boolean
         get()  = attributeBooleanTicker[this, "disabled"]
         set(newValue) {attributeBooleanTicker[this, "disabled"] = newValue}
@@ -108,7 +120,7 @@ open class OPTGROUP(initialAttributes : Map<String, String>, override val consum
  */
 @HtmlTagMarker
 @OptIn(ExperimentalContracts::class)
-inline fun OPTGROUP.option(classes : String? = null, crossinline block : OPTION.() -> Unit = {}) : Unit {
+inline fun I_OPTGROUP.option(classes : String? = null, crossinline block : OPTION.() -> Unit = {}) : Unit {
     contract { callsInPlace(block, InvocationKind.EXACTLY_ONCE) }
     OPTION(attributesMapOf("class", classes), consumer).visit(block)
 }
@@ -116,11 +128,15 @@ inline fun OPTGROUP.option(classes : String? = null, crossinline block : OPTION.
  * Selectable choice
  */
 @HtmlTagMarker
-fun OPTGROUP.option(classes : String? = null, content : String = "") : Unit = OPTION(attributesMapOf("class", classes), consumer).visit({+content})
+fun I_OPTGROUP.option(classes : String? = null, content : String = "") : Unit = OPTION(attributesMapOf("class", classes), consumer).visit({+content})
 
 
 @Suppress("unused")
-open class OPTION(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("option", consumer, initialAttributes, null, true, false), CommonAttributeGroupFacade {
+interface I_OPTION {
+    val consumer : TagConsumer<*>
+}
+@Suppress("unused")
+open class OPTION(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : I_OPTION, HTMLTag("option", consumer, initialAttributes, null, true, false), CommonAttributeGroupFacade {
     var disabled : Boolean
         get()  = attributeBooleanTicker[this, "disabled"]
         set(newValue) {attributeBooleanTicker[this, "disabled"] = newValue}
@@ -141,7 +157,11 @@ open class OPTION(initialAttributes : Map<String, String>, override val consumer
 }
 
 @Suppress("unused")
-open class OUTPUT(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("output", consumer, initialAttributes, null, true, false), HtmlBlockInlineTag {
+interface I_OUTPUT {
+    val consumer : TagConsumer<*>
+}
+@Suppress("unused")
+open class OUTPUT(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : I_OUTPUT, HTMLTag("output", consumer, initialAttributes, null, true, false), HtmlBlockInlineTag {
     var htmlFor : String
         get()  = attributeStringString[this, "for"]
         set(newValue) {attributeStringString[this, "for"] = newValue}

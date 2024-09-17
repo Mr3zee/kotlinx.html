@@ -13,7 +13,11 @@ import kotlinx.html.attributes.*
 *******************************************************************************/
 
 @Suppress("unused")
-open class P(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("p", consumer, initialAttributes, null, false, false), HtmlBlockInlineTag {
+interface I_P {
+    val consumer : TagConsumer<*>
+}
+@Suppress("unused")
+open class P(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : I_P, HTMLTag("p", consumer, initialAttributes, null, false, false), HtmlBlockInlineTag {
 
 }
 val P.asFlowContent : FlowContent
@@ -24,7 +28,11 @@ val P.asPhrasingContent : PhrasingContent
 
 
 @Suppress("unused")
-open class PARAM(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("param", consumer, initialAttributes, null, true, true), CoreAttributeGroupFacade {
+interface I_PARAM {
+    val consumer : TagConsumer<*>
+}
+@Suppress("unused")
+open class PARAM(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : I_PARAM, HTMLTag("param", consumer, initialAttributes, null, true, true), CoreAttributeGroupFacade {
     var name : String
         get()  = attributeStringString[this, "name"]
         set(newValue) {attributeStringString[this, "name"] = newValue}
@@ -37,7 +45,11 @@ open class PARAM(initialAttributes : Map<String, String>, override val consumer 
 }
 
 @Suppress("unused")
-open class PICTURE(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("picture", consumer, initialAttributes, null, false, false), FlowInteractivePhrasingContent {
+interface I_PICTURE {
+    val consumer : TagConsumer<*>
+}
+@Suppress("unused")
+open class PICTURE(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : I_PICTURE, HTMLTag("picture", consumer, initialAttributes, null, false, false), FlowInteractivePhrasingContent {
 
 }
 /**
@@ -45,7 +57,7 @@ open class PICTURE(initialAttributes : Map<String, String>, override val consume
  */
 @HtmlTagMarker
 @OptIn(ExperimentalContracts::class)
-inline fun PICTURE.source(classes : String? = null, crossinline block : SOURCE.() -> Unit = {}) : Unit {
+inline fun I_PICTURE.source(classes : String? = null, crossinline block : SOURCE.() -> Unit = {}) : Unit {
     contract { callsInPlace(block, InvocationKind.EXACTLY_ONCE) }
     SOURCE(attributesMapOf("class", classes), consumer).visit(block)
 }
@@ -55,19 +67,19 @@ inline fun PICTURE.source(classes : String? = null, crossinline block : SOURCE.(
  */
 @HtmlTagMarker
 @OptIn(ExperimentalContracts::class)
-inline fun PICTURE.img(alt : String? = null, src : String? = null, loading : ImgLoading? = null, classes : String? = null, crossinline block : IMG.() -> Unit = {}) : Unit {
+inline fun I_PICTURE.img(alt : String? = null, src : String? = null, loading : ImgLoading? = null, classes : String? = null, crossinline block : IMG.() -> Unit = {}) : Unit {
     contract { callsInPlace(block, InvocationKind.EXACTLY_ONCE) }
     IMG(attributesMapOf("alt", alt,"src", src,"loading", loading?.enumEncode(),"class", classes), consumer).visit(block)
 }
 @HtmlTagMarker
 @OptIn(ExperimentalContracts::class)
-inline fun PICTURE.eagerImg(alt : String? = null, src : String? = null, classes : String? = null, crossinline block : IMG.() -> Unit = {}) : Unit {
+inline fun I_PICTURE.eagerImg(alt : String? = null, src : String? = null, classes : String? = null, crossinline block : IMG.() -> Unit = {}) : Unit {
     contract { callsInPlace(block, InvocationKind.EXACTLY_ONCE) }
     IMG(attributesMapOf("alt", alt,"src", src,"loading", ImgLoading.eager.realValue,"class", classes), consumer).visit(block)
 }
 @HtmlTagMarker
 @OptIn(ExperimentalContracts::class)
-inline fun PICTURE.lazyImg(alt : String? = null, src : String? = null, classes : String? = null, crossinline block : IMG.() -> Unit = {}) : Unit {
+inline fun I_PICTURE.lazyImg(alt : String? = null, src : String? = null, classes : String? = null, crossinline block : IMG.() -> Unit = {}) : Unit {
     contract { callsInPlace(block, InvocationKind.EXACTLY_ONCE) }
     IMG(attributesMapOf("alt", alt,"src", src,"loading", ImgLoading.lazy.realValue,"class", classes), consumer).visit(block)
 }
@@ -83,7 +95,11 @@ val PICTURE.asPhrasingContent : PhrasingContent
 
 
 @Suppress("unused")
-open class PRE(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("pre", consumer, initialAttributes, null, false, false), HtmlBlockInlineTag {
+interface I_PRE {
+    val consumer : TagConsumer<*>
+}
+@Suppress("unused")
+open class PRE(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : I_PRE, HTMLTag("pre", consumer, initialAttributes, null, false, false), HtmlBlockInlineTag {
 
 }
 val PRE.asFlowContent : FlowContent
@@ -94,7 +110,11 @@ val PRE.asPhrasingContent : PhrasingContent
 
 
 @Suppress("unused")
-open class PROGRESS(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("progress", consumer, initialAttributes, null, true, false), HtmlBlockInlineTag {
+interface I_PROGRESS {
+    val consumer : TagConsumer<*>
+}
+@Suppress("unused")
+open class PROGRESS(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : I_PROGRESS, HTMLTag("progress", consumer, initialAttributes, null, true, false), HtmlBlockInlineTag {
     var value : String
         get()  = attributeStringString[this, "value"]
         set(newValue) {attributeStringString[this, "value"] = newValue}

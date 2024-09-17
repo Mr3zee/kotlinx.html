@@ -13,17 +13,29 @@ import kotlinx.html.attributes.*
 *******************************************************************************/
 
 @Suppress("unused")
-open class RP(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("rp", consumer, initialAttributes, null, true, false), HtmlInlineTag {
+interface I_RP {
+    val consumer : TagConsumer<*>
+}
+@Suppress("unused")
+open class RP(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : I_RP, HTMLTag("rp", consumer, initialAttributes, null, true, false), HtmlInlineTag {
 
 }
 
 @Suppress("unused")
-open class RT(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("rt", consumer, initialAttributes, null, true, false), HtmlInlineTag {
+interface I_RT {
+    val consumer : TagConsumer<*>
+}
+@Suppress("unused")
+open class RT(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : I_RT, HTMLTag("rt", consumer, initialAttributes, null, true, false), HtmlInlineTag {
 
 }
 
 @Suppress("unused")
-open class RUBY(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("ruby", consumer, initialAttributes, null, true, false), HtmlBlockInlineTag {
+interface I_RUBY {
+    val consumer : TagConsumer<*>
+}
+@Suppress("unused")
+open class RUBY(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : I_RUBY, HTMLTag("ruby", consumer, initialAttributes, null, true, false), HtmlBlockInlineTag {
 
 }
 /**
@@ -31,7 +43,7 @@ open class RUBY(initialAttributes : Map<String, String>, override val consumer :
  */
 @HtmlTagMarker
 @OptIn(ExperimentalContracts::class)
-inline fun RUBY.rt(classes : String? = null, crossinline block : RT.() -> Unit = {}) : Unit {
+inline fun I_RUBY.rt(classes : String? = null, crossinline block : RT.() -> Unit = {}) : Unit {
     contract { callsInPlace(block, InvocationKind.EXACTLY_ONCE) }
     RT(attributesMapOf("class", classes), consumer).visit(block)
 }
@@ -41,7 +53,7 @@ inline fun RUBY.rt(classes : String? = null, crossinline block : RT.() -> Unit =
  */
 @HtmlTagMarker
 @OptIn(ExperimentalContracts::class)
-inline fun RUBY.rp(classes : String? = null, crossinline block : RP.() -> Unit = {}) : Unit {
+inline fun I_RUBY.rp(classes : String? = null, crossinline block : RP.() -> Unit = {}) : Unit {
     contract { callsInPlace(block, InvocationKind.EXACTLY_ONCE) }
     RP(attributesMapOf("class", classes), consumer).visit(block)
 }

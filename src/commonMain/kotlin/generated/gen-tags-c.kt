@@ -13,7 +13,11 @@ import kotlinx.html.attributes.*
 *******************************************************************************/
 
 @Suppress("unused")
-open class CANVAS(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("canvas", consumer, initialAttributes, null, false, false), HtmlBlockInlineTag {
+interface I_CANVAS {
+    val consumer : TagConsumer<*>
+}
+@Suppress("unused")
+open class CANVAS(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : I_CANVAS, HTMLTag("canvas", consumer, initialAttributes, null, false, false), HtmlBlockInlineTag {
     var width : String
         get()  = attributeStringString[this, "width"]
         set(newValue) {attributeStringString[this, "width"] = newValue}
@@ -32,12 +36,20 @@ val CANVAS.asPhrasingContent : PhrasingContent
 
 
 @Suppress("unused")
-open class CAPTION(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("caption", consumer, initialAttributes, null, false, false), HtmlBlockTag {
+interface I_CAPTION {
+    val consumer : TagConsumer<*>
+}
+@Suppress("unused")
+open class CAPTION(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : I_CAPTION, HTMLTag("caption", consumer, initialAttributes, null, false, false), HtmlBlockTag {
 
 }
 
 @Suppress("unused")
-open class CITE(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("cite", consumer, initialAttributes, null, true, false), HtmlBlockInlineTag {
+interface I_CITE {
+    val consumer : TagConsumer<*>
+}
+@Suppress("unused")
+open class CITE(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : I_CITE, HTMLTag("cite", consumer, initialAttributes, null, true, false), HtmlBlockInlineTag {
 
 }
 val CITE.asFlowContent : FlowContent
@@ -48,7 +60,11 @@ val CITE.asPhrasingContent : PhrasingContent
 
 
 @Suppress("unused")
-open class CODE(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("code", consumer, initialAttributes, null, true, false), HtmlBlockInlineTag {
+interface I_CODE {
+    val consumer : TagConsumer<*>
+}
+@Suppress("unused")
+open class CODE(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : I_CODE, HTMLTag("code", consumer, initialAttributes, null, true, false), HtmlBlockInlineTag {
 
 }
 val CODE.asFlowContent : FlowContent
@@ -59,7 +75,11 @@ val CODE.asPhrasingContent : PhrasingContent
 
 
 @Suppress("unused")
-open class COL(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("col", consumer, initialAttributes, null, false, true), CommonAttributeGroupFacade {
+interface I_COL {
+    val consumer : TagConsumer<*>
+}
+@Suppress("unused")
+open class COL(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : I_COL, HTMLTag("col", consumer, initialAttributes, null, false, true), CommonAttributeGroupFacade {
     var span : String
         get()  = attributeStringString[this, "span"]
         set(newValue) {attributeStringString[this, "span"] = newValue}
@@ -68,7 +88,11 @@ open class COL(initialAttributes : Map<String, String>, override val consumer : 
 }
 
 @Suppress("unused")
-open class COLGROUP(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("colgroup", consumer, initialAttributes, null, false, false), CommonAttributeGroupFacade {
+interface I_COLGROUP {
+    val consumer : TagConsumer<*>
+}
+@Suppress("unused")
+open class COLGROUP(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : I_COLGROUP, HTMLTag("colgroup", consumer, initialAttributes, null, false, false), CommonAttributeGroupFacade {
     var span : String
         get()  = attributeStringString[this, "span"]
         set(newValue) {attributeStringString[this, "span"] = newValue}
@@ -80,14 +104,18 @@ open class COLGROUP(initialAttributes : Map<String, String>, override val consum
  */
 @HtmlTagMarker
 @OptIn(ExperimentalContracts::class)
-inline fun COLGROUP.col(classes : String? = null, crossinline block : COL.() -> Unit = {}) : Unit {
+inline fun I_COLGROUP.col(classes : String? = null, crossinline block : COL.() -> Unit = {}) : Unit {
     contract { callsInPlace(block, InvocationKind.EXACTLY_ONCE) }
     COL(attributesMapOf("class", classes), consumer).visit(block)
 }
 
 
 @Suppress("unused")
-open class COMMAND(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("command", consumer, initialAttributes, null, true, true), CommonAttributeGroupFacadeFlowMetaDataPhrasingContent {
+interface I_COMMAND {
+    val consumer : TagConsumer<*>
+}
+@Suppress("unused")
+open class COMMAND(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : I_COMMAND, HTMLTag("command", consumer, initialAttributes, null, true, true), CommonAttributeGroupFacadeFlowMetaDataPhrasingContent {
     var type : CommandType
         get()  = attributeCommandTypeEnumCommandTypeValues[this, "type"]
         set(newValue) {attributeCommandTypeEnumCommandTypeValues[this, "type"] = newValue}

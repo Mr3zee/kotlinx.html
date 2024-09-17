@@ -13,7 +13,11 @@ import kotlinx.html.attributes.*
 *******************************************************************************/
 
 @Suppress("unused")
-open class A(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("a", consumer, initialAttributes, null, true, false), CommonAttributeGroupFacadeFlowInteractivePhrasingContent {
+interface I_A {
+    val consumer : TagConsumer<*>
+}
+@Suppress("unused")
+open class A(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : I_A, HTMLTag("a", consumer, initialAttributes, null, true, false), CommonAttributeGroupFacadeFlowInteractivePhrasingContent {
     var href : String
         get()  = attributeStringString[this, "href"]
         set(newValue) {attributeStringString[this, "href"] = newValue}
@@ -63,7 +67,11 @@ val A.asPhrasingContent : PhrasingContent
 
 
 @Suppress("unused")
-open class ABBR(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("abbr", consumer, initialAttributes, null, true, false), HtmlBlockInlineTag {
+interface I_ABBR {
+    val consumer : TagConsumer<*>
+}
+@Suppress("unused")
+open class ABBR(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : I_ABBR, HTMLTag("abbr", consumer, initialAttributes, null, true, false), HtmlBlockInlineTag {
 
 }
 val ABBR.asFlowContent : FlowContent
@@ -74,12 +82,20 @@ val ABBR.asPhrasingContent : PhrasingContent
 
 
 @Suppress("unused")
-open class ADDRESS(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("address", consumer, initialAttributes, null, false, false), HtmlBlockTag {
+interface I_ADDRESS {
+    val consumer : TagConsumer<*>
+}
+@Suppress("unused")
+open class ADDRESS(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : I_ADDRESS, HTMLTag("address", consumer, initialAttributes, null, false, false), HtmlBlockTag {
 
 }
 
 @Suppress("unused")
-open class AREA(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("area", consumer, initialAttributes, null, true, true), HtmlBlockInlineTag {
+interface I_AREA {
+    val consumer : TagConsumer<*>
+}
+@Suppress("unused")
+open class AREA(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : I_AREA, HTMLTag("area", consumer, initialAttributes, null, true, true), HtmlBlockInlineTag {
     var shape : AreaShape
         get()  = attributeAreaShapeEnumAreaShapeValues[this, "shape"]
         set(newValue) {attributeAreaShapeEnumAreaShapeValues[this, "shape"] = newValue}
@@ -130,7 +146,11 @@ val AREA.asPhrasingContent : PhrasingContent
 
 
 @Suppress("unused")
-open class ARTICLE(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("article", consumer, initialAttributes, null, false, false), CommonAttributeGroupFacadeFlowSectioningContent {
+interface I_ARTICLE {
+    val consumer : TagConsumer<*>
+}
+@Suppress("unused")
+open class ARTICLE(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : I_ARTICLE, HTMLTag("article", consumer, initialAttributes, null, false, false), CommonAttributeGroupFacadeFlowSectioningContent {
 
 }
 val ARTICLE.asFlowContent : FlowContent
@@ -141,7 +161,11 @@ val ARTICLE.asSectioningContent : SectioningContent
 
 
 @Suppress("unused")
-open class ASIDE(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("aside", consumer, initialAttributes, null, false, false), CommonAttributeGroupFacadeFlowSectioningContent {
+interface I_ASIDE {
+    val consumer : TagConsumer<*>
+}
+@Suppress("unused")
+open class ASIDE(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : I_ASIDE, HTMLTag("aside", consumer, initialAttributes, null, false, false), CommonAttributeGroupFacadeFlowSectioningContent {
 
 }
 val ASIDE.asFlowContent : FlowContent
@@ -152,7 +176,11 @@ val ASIDE.asSectioningContent : SectioningContent
 
 
 @Suppress("unused")
-open class AUDIO(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("audio", consumer, initialAttributes, null, false, false), CommonAttributeGroupFacadeFlowInteractivePhrasingContent {
+interface I_AUDIO {
+    val consumer : TagConsumer<*>
+}
+@Suppress("unused")
+open class AUDIO(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : I_AUDIO, HTMLTag("audio", consumer, initialAttributes, null, false, false), CommonAttributeGroupFacadeFlowInteractivePhrasingContent {
     var src : String
         get()  = attributeStringString[this, "src"]
         set(newValue) {attributeStringString[this, "src"] = newValue}
@@ -180,7 +208,7 @@ open class AUDIO(initialAttributes : Map<String, String>, override val consumer 
  */
 @HtmlTagMarker
 @OptIn(ExperimentalContracts::class)
-inline fun AUDIO.source(classes : String? = null, crossinline block : SOURCE.() -> Unit = {}) : Unit {
+inline fun I_AUDIO.source(classes : String? = null, crossinline block : SOURCE.() -> Unit = {}) : Unit {
     contract { callsInPlace(block, InvocationKind.EXACTLY_ONCE) }
     SOURCE(attributesMapOf("class", classes), consumer).visit(block)
 }

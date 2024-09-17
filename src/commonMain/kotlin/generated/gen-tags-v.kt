@@ -13,7 +13,11 @@ import kotlinx.html.attributes.*
 *******************************************************************************/
 
 @Suppress("unused")
-open class VAR(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("var", consumer, initialAttributes, null, true, false), HtmlBlockInlineTag {
+interface I_VAR {
+    val consumer : TagConsumer<*>
+}
+@Suppress("unused")
+open class VAR(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : I_VAR, HTMLTag("var", consumer, initialAttributes, null, true, false), HtmlBlockInlineTag {
 
 }
 val VAR.asFlowContent : FlowContent
@@ -24,7 +28,11 @@ val VAR.asPhrasingContent : PhrasingContent
 
 
 @Suppress("unused")
-open class VIDEO(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("video", consumer, initialAttributes, null, false, false), CommonAttributeGroupFacadeFlowInteractivePhrasingContent {
+interface I_VIDEO {
+    val consumer : TagConsumer<*>
+}
+@Suppress("unused")
+open class VIDEO(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : I_VIDEO, HTMLTag("video", consumer, initialAttributes, null, false, false), CommonAttributeGroupFacadeFlowInteractivePhrasingContent {
     var src : String
         get()  = attributeStringString[this, "src"]
         set(newValue) {attributeStringString[this, "src"] = newValue}
@@ -64,7 +72,7 @@ open class VIDEO(initialAttributes : Map<String, String>, override val consumer 
  */
 @HtmlTagMarker
 @OptIn(ExperimentalContracts::class)
-inline fun VIDEO.source(classes : String? = null, crossinline block : SOURCE.() -> Unit = {}) : Unit {
+inline fun I_VIDEO.source(classes : String? = null, crossinline block : SOURCE.() -> Unit = {}) : Unit {
     contract { callsInPlace(block, InvocationKind.EXACTLY_ONCE) }
     SOURCE(attributesMapOf("class", classes), consumer).visit(block)
 }

@@ -13,7 +13,11 @@ import kotlinx.html.attributes.*
 *******************************************************************************/
 
 @Suppress("unused")
-open class Q(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("q", consumer, initialAttributes, null, true, false), HtmlBlockInlineTag {
+interface I_Q {
+    val consumer : TagConsumer<*>
+}
+@Suppress("unused")
+open class Q(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : I_Q, HTMLTag("q", consumer, initialAttributes, null, true, false), HtmlBlockInlineTag {
     var cite : String
         get()  = attributeStringString[this, "cite"]
         set(newValue) {attributeStringString[this, "cite"] = newValue}

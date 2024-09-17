@@ -29,7 +29,7 @@ fun generate(pkg: String, todir: String, jsdir: String, wasmJsDir: String) {
         emptyLine()
 
         repository.attributeFacades.values.forEach {
-            facade(repository,it)
+            facade(repository, it)
             emptyLine()
         }
     }
@@ -42,6 +42,32 @@ fun generate(pkg: String, todir: String, jsdir: String, wasmJsDir: String) {
                 tagClass(repository, it, emptySet())
             }
         }
+    }
+
+    writeIntoFile("$todir/gen-tag-partial.kt") {
+        fullImportsHeader(pkg)
+
+        val allTags = repository.tags.values.filterIgnored().groupBy { it.name[0] }.entries
+            .flatMap { it.value }
+
+        allTags
+            .flatMap { it.directChildren }
+            .map { repository.tags[it]!! }
+            .distinct()
+            .forEach {
+                htmlTagBuilders("Partial", it)
+                appendLine()
+            }
+
+        appendLine()
+
+        clazz(
+            Clazz(
+                name = "Partial",
+                isInterface = true,
+                parents = allTags.map { it.interfaceName } + "FlowContent",
+            )
+        )
     }
 
     generateConsumerTags(repository, "$todir/gen-consumer-tags.kt", pkg) { tag, blockOrContent ->

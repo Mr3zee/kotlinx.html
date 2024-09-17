@@ -13,37 +13,65 @@ import kotlinx.html.attributes.*
 *******************************************************************************/
 
 @Suppress("unused")
-open class H1(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("h1", consumer, initialAttributes, null, false, false), CommonAttributeGroupFacadeFlowHeadingPhrasingContent {
+interface I_H1 {
+    val consumer : TagConsumer<*>
+}
+@Suppress("unused")
+open class H1(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : I_H1, HTMLTag("h1", consumer, initialAttributes, null, false, false), CommonAttributeGroupFacadeFlowHeadingPhrasingContent {
 
 }
 
 @Suppress("unused")
-open class H2(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("h2", consumer, initialAttributes, null, false, false), CommonAttributeGroupFacadeFlowHeadingPhrasingContent {
+interface I_H2 {
+    val consumer : TagConsumer<*>
+}
+@Suppress("unused")
+open class H2(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : I_H2, HTMLTag("h2", consumer, initialAttributes, null, false, false), CommonAttributeGroupFacadeFlowHeadingPhrasingContent {
 
 }
 
 @Suppress("unused")
-open class H3(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("h3", consumer, initialAttributes, null, false, false), CommonAttributeGroupFacadeFlowHeadingPhrasingContent {
+interface I_H3 {
+    val consumer : TagConsumer<*>
+}
+@Suppress("unused")
+open class H3(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : I_H3, HTMLTag("h3", consumer, initialAttributes, null, false, false), CommonAttributeGroupFacadeFlowHeadingPhrasingContent {
 
 }
 
 @Suppress("unused")
-open class H4(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("h4", consumer, initialAttributes, null, false, false), CommonAttributeGroupFacadeFlowHeadingPhrasingContent {
+interface I_H4 {
+    val consumer : TagConsumer<*>
+}
+@Suppress("unused")
+open class H4(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : I_H4, HTMLTag("h4", consumer, initialAttributes, null, false, false), CommonAttributeGroupFacadeFlowHeadingPhrasingContent {
 
 }
 
 @Suppress("unused")
-open class H5(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("h5", consumer, initialAttributes, null, false, false), CommonAttributeGroupFacadeFlowHeadingPhrasingContent {
+interface I_H5 {
+    val consumer : TagConsumer<*>
+}
+@Suppress("unused")
+open class H5(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : I_H5, HTMLTag("h5", consumer, initialAttributes, null, false, false), CommonAttributeGroupFacadeFlowHeadingPhrasingContent {
 
 }
 
 @Suppress("unused")
-open class H6(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("h6", consumer, initialAttributes, null, false, false), CommonAttributeGroupFacadeFlowHeadingPhrasingContent {
+interface I_H6 {
+    val consumer : TagConsumer<*>
+}
+@Suppress("unused")
+open class H6(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : I_H6, HTMLTag("h6", consumer, initialAttributes, null, false, false), CommonAttributeGroupFacadeFlowHeadingPhrasingContent {
 
 }
 
 @Suppress("unused")
-open class HEAD(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("head", consumer, initialAttributes, null, false, false), HtmlHeadTag {
+interface I_HEAD {
+    val consumer : TagConsumer<*>
+}
+@Suppress("unused")
+open class HEAD(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : I_HEAD, HTMLTag("head", consumer, initialAttributes, null, false, false), HtmlHeadTag {
     @Suppress("DeprecatedCallableAddReplaceWith")
     @Deprecated("This tag most likely doesn't support text content or requires unsafe content (try unsafe {})")
     override operator fun Entities.unaryPlus() : Unit {
@@ -77,12 +105,20 @@ open class HEAD(initialAttributes : Map<String, String>, override val consumer :
 }
 
 @Suppress("unused")
-open class HEADER(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("header", consumer, initialAttributes, null, false, false), HtmlBlockTag {
+interface I_HEADER {
+    val consumer : TagConsumer<*>
+}
+@Suppress("unused")
+open class HEADER(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : I_HEADER, HTMLTag("header", consumer, initialAttributes, null, false, false), HtmlBlockTag {
 
 }
 
 @Suppress("unused")
-open class HGROUP(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("hgroup", consumer, initialAttributes, null, false, false), CommonAttributeGroupFacadeFlowHeadingContent {
+interface I_HGROUP {
+    val consumer : TagConsumer<*>
+}
+@Suppress("unused")
+open class HGROUP(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : I_HGROUP, HTMLTag("hgroup", consumer, initialAttributes, null, false, false), CommonAttributeGroupFacadeFlowHeadingContent {
 
 }
 /**
@@ -90,7 +126,7 @@ open class HGROUP(initialAttributes : Map<String, String>, override val consumer
  */
 @HtmlTagMarker
 @OptIn(ExperimentalContracts::class)
-inline fun HGROUP.h1(classes : String? = null, crossinline block : H1.() -> Unit = {}) : Unit {
+inline fun I_HGROUP.h1(classes : String? = null, crossinline block : H1.() -> Unit = {}) : Unit {
     contract { callsInPlace(block, InvocationKind.EXACTLY_ONCE) }
     H1(attributesMapOf("class", classes), consumer).visit(block)
 }
@@ -100,7 +136,7 @@ inline fun HGROUP.h1(classes : String? = null, crossinline block : H1.() -> Unit
  */
 @HtmlTagMarker
 @OptIn(ExperimentalContracts::class)
-inline fun HGROUP.h2(classes : String? = null, crossinline block : H2.() -> Unit = {}) : Unit {
+inline fun I_HGROUP.h2(classes : String? = null, crossinline block : H2.() -> Unit = {}) : Unit {
     contract { callsInPlace(block, InvocationKind.EXACTLY_ONCE) }
     H2(attributesMapOf("class", classes), consumer).visit(block)
 }
@@ -110,7 +146,7 @@ inline fun HGROUP.h2(classes : String? = null, crossinline block : H2.() -> Unit
  */
 @HtmlTagMarker
 @OptIn(ExperimentalContracts::class)
-inline fun HGROUP.h3(classes : String? = null, crossinline block : H3.() -> Unit = {}) : Unit {
+inline fun I_HGROUP.h3(classes : String? = null, crossinline block : H3.() -> Unit = {}) : Unit {
     contract { callsInPlace(block, InvocationKind.EXACTLY_ONCE) }
     H3(attributesMapOf("class", classes), consumer).visit(block)
 }
@@ -120,7 +156,7 @@ inline fun HGROUP.h3(classes : String? = null, crossinline block : H3.() -> Unit
  */
 @HtmlTagMarker
 @OptIn(ExperimentalContracts::class)
-inline fun HGROUP.h4(classes : String? = null, crossinline block : H4.() -> Unit = {}) : Unit {
+inline fun I_HGROUP.h4(classes : String? = null, crossinline block : H4.() -> Unit = {}) : Unit {
     contract { callsInPlace(block, InvocationKind.EXACTLY_ONCE) }
     H4(attributesMapOf("class", classes), consumer).visit(block)
 }
@@ -130,7 +166,7 @@ inline fun HGROUP.h4(classes : String? = null, crossinline block : H4.() -> Unit
  */
 @HtmlTagMarker
 @OptIn(ExperimentalContracts::class)
-inline fun HGROUP.h5(classes : String? = null, crossinline block : H5.() -> Unit = {}) : Unit {
+inline fun I_HGROUP.h5(classes : String? = null, crossinline block : H5.() -> Unit = {}) : Unit {
     contract { callsInPlace(block, InvocationKind.EXACTLY_ONCE) }
     H5(attributesMapOf("class", classes), consumer).visit(block)
 }
@@ -140,7 +176,7 @@ inline fun HGROUP.h5(classes : String? = null, crossinline block : H5.() -> Unit
  */
 @HtmlTagMarker
 @OptIn(ExperimentalContracts::class)
-inline fun HGROUP.h6(classes : String? = null, crossinline block : H6.() -> Unit = {}) : Unit {
+inline fun I_HGROUP.h6(classes : String? = null, crossinline block : H6.() -> Unit = {}) : Unit {
     contract { callsInPlace(block, InvocationKind.EXACTLY_ONCE) }
     H6(attributesMapOf("class", classes), consumer).visit(block)
 }
@@ -153,12 +189,20 @@ val HGROUP.asHeadingContent : HeadingContent
 
 
 @Suppress("unused")
-open class HR(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("hr", consumer, initialAttributes, null, false, true), HtmlBlockTag {
+interface I_HR {
+    val consumer : TagConsumer<*>
+}
+@Suppress("unused")
+open class HR(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : I_HR, HTMLTag("hr", consumer, initialAttributes, null, false, true), HtmlBlockTag {
 
 }
 
 @Suppress("unused")
-open class HTML(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>, namespace : String? = null) : HTMLTag("html", consumer, initialAttributes, namespace, false, false), CommonAttributeGroupFacade {
+interface I_HTML {
+    val consumer : TagConsumer<*>
+}
+@Suppress("unused")
+open class HTML(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>, namespace : String? = null) : I_HTML, HTMLTag("html", consumer, initialAttributes, namespace, false, false), CommonAttributeGroupFacade {
     var manifest : String
         get()  = attributeStringString[this, "manifest"]
         set(newValue) {attributeStringString[this, "manifest"] = newValue}
@@ -199,7 +243,7 @@ open class HTML(initialAttributes : Map<String, String>, override val consumer :
  */
 @HtmlTagMarker
 @OptIn(ExperimentalContracts::class)
-inline fun HTML.body(classes : String? = null, crossinline block : BODY.() -> Unit = {}) : Unit {
+inline fun I_HTML.body(classes : String? = null, crossinline block : BODY.() -> Unit = {}) : Unit {
     contract { callsInPlace(block, InvocationKind.EXACTLY_ONCE) }
     BODY(attributesMapOf("class", classes), consumer).visit(block)
 }
@@ -209,7 +253,7 @@ inline fun HTML.body(classes : String? = null, crossinline block : BODY.() -> Un
  */
 @HtmlTagMarker
 @OptIn(ExperimentalContracts::class)
-inline fun HTML.head(crossinline block : HEAD.() -> Unit = {}) : Unit {
+inline fun I_HTML.head(crossinline block : HEAD.() -> Unit = {}) : Unit {
     contract { callsInPlace(block, InvocationKind.EXACTLY_ONCE) }
     HEAD(emptyMap, consumer).visit(block)
 }
@@ -219,6 +263,6 @@ inline fun HTML.head(crossinline block : HEAD.() -> Unit = {}) : Unit {
  * Document head
  */
 @HtmlTagMarker
-fun HTML.head(content : String = "") : Unit = HEAD(emptyMap, consumer).visit({+content})
+fun I_HTML.head(content : String = "") : Unit = HEAD(emptyMap, consumer).visit({+content})
 
 

@@ -58,13 +58,25 @@ fun Appendable.tagClass(repository: Repository, tag: TagInfo, excludeAttributes:
     )
 
     appendLine("@Suppress(\"unused\")")
+    clazz(
+        Clazz(
+            name = tag.interfaceName,
+            isInterface = true
+        )
+    ) {
+        append("    val consumer : TagConsumer<*>")
+        appendLine()
+    }
+
+    appendLine("@Suppress(\"unused\")")
     clazz(Clazz(
         name = tag.className,
         variables = parameters,
         parents = listOf(
+            tag.interfaceName,
             buildString {
                 functionCall("HTMLTag", superConstructorArguments)
-            }
+            },
         ) + when {
             allParentIfaces.isNotEmpty() -> listOf(betterParentIfaces).map { renames[it] ?: it }
             else -> emptyList()
@@ -157,7 +169,7 @@ fun Appendable.tagClass(repository: Repository, tag: TagInfo, excludeAttributes:
     }
 
     tag.directChildren.mapNotNull { repository.tags[it] }.filterIgnored().forEach { children ->
-        htmlTagBuilders(tag.className, children)
+        htmlTagBuilders(tag.interfaceName, children)
     }
 
     if (parentElementIfaces.size > 1) {

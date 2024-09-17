@@ -13,7 +13,11 @@ import kotlinx.html.attributes.*
 *******************************************************************************/
 
 @Suppress("unused")
-open class S(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("s", consumer, initialAttributes, null, false, false), HtmlBlockInlineTag {
+interface I_S {
+    val consumer : TagConsumer<*>
+}
+@Suppress("unused")
+open class S(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : I_S, HTMLTag("s", consumer, initialAttributes, null, false, false), HtmlBlockInlineTag {
 
 }
 val S.asFlowContent : FlowContent
@@ -24,7 +28,11 @@ val S.asPhrasingContent : PhrasingContent
 
 
 @Suppress("unused")
-open class SAMP(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("samp", consumer, initialAttributes, null, true, false), HtmlBlockInlineTag {
+interface I_SAMP {
+    val consumer : TagConsumer<*>
+}
+@Suppress("unused")
+open class SAMP(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : I_SAMP, HTMLTag("samp", consumer, initialAttributes, null, true, false), HtmlBlockInlineTag {
 
 }
 val SAMP.asFlowContent : FlowContent
@@ -35,7 +43,11 @@ val SAMP.asPhrasingContent : PhrasingContent
 
 
 @Suppress("unused")
-open class SCRIPT(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("script", consumer, initialAttributes, null, false, false), CoreAttributeGroupFacadeFlowMetaDataPhrasingContent {
+interface I_SCRIPT {
+    val consumer : TagConsumer<*>
+}
+@Suppress("unused")
+open class SCRIPT(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : I_SCRIPT, HTMLTag("script", consumer, initialAttributes, null, false, false), CoreAttributeGroupFacadeFlowMetaDataPhrasingContent {
     var charset : String
         get()  = attributeStringString[this, "charset"]
         set(newValue) {attributeStringString[this, "charset"] = newValue}
@@ -110,7 +122,11 @@ val SCRIPT.asPhrasingContent : PhrasingContent
 
 
 @Suppress("unused")
-open class SECTION(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("section", consumer, initialAttributes, null, false, false), CommonAttributeGroupFacadeFlowSectioningContent {
+interface I_SECTION {
+    val consumer : TagConsumer<*>
+}
+@Suppress("unused")
+open class SECTION(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : I_SECTION, HTMLTag("section", consumer, initialAttributes, null, false, false), CommonAttributeGroupFacadeFlowSectioningContent {
 
 }
 val SECTION.asFlowContent : FlowContent
@@ -121,7 +137,11 @@ val SECTION.asSectioningContent : SectioningContent
 
 
 @Suppress("unused")
-open class SELECT(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("select", consumer, initialAttributes, null, true, false), CommonAttributeGroupFacadeFlowInteractivePhrasingContent {
+interface I_SELECT {
+    val consumer : TagConsumer<*>
+}
+@Suppress("unused")
+open class SELECT(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : I_SELECT, HTMLTag("select", consumer, initialAttributes, null, true, false), CommonAttributeGroupFacadeFlowInteractivePhrasingContent {
     var autoFocus : Boolean
         get()  = attributeBooleanTicker[this, "autofocus"]
         set(newValue) {attributeBooleanTicker[this, "autofocus"] = newValue}
@@ -157,7 +177,7 @@ open class SELECT(initialAttributes : Map<String, String>, override val consumer
  */
 @HtmlTagMarker
 @OptIn(ExperimentalContracts::class)
-inline fun SELECT.option(classes : String? = null, crossinline block : OPTION.() -> Unit = {}) : Unit {
+inline fun I_SELECT.option(classes : String? = null, crossinline block : OPTION.() -> Unit = {}) : Unit {
     contract { callsInPlace(block, InvocationKind.EXACTLY_ONCE) }
     OPTION(attributesMapOf("class", classes), consumer).visit(block)
 }
@@ -165,14 +185,14 @@ inline fun SELECT.option(classes : String? = null, crossinline block : OPTION.()
  * Selectable choice
  */
 @HtmlTagMarker
-fun SELECT.option(classes : String? = null, content : String = "") : Unit = OPTION(attributesMapOf("class", classes), consumer).visit({+content})
+fun I_SELECT.option(classes : String? = null, content : String = "") : Unit = OPTION(attributesMapOf("class", classes), consumer).visit({+content})
 
 /**
  * Option group
  */
 @HtmlTagMarker
 @OptIn(ExperimentalContracts::class)
-inline fun SELECT.optGroup(label : String? = null, classes : String? = null, crossinline block : OPTGROUP.() -> Unit = {}) : Unit {
+inline fun I_SELECT.optGroup(label : String? = null, classes : String? = null, crossinline block : OPTGROUP.() -> Unit = {}) : Unit {
     contract { callsInPlace(block, InvocationKind.EXACTLY_ONCE) }
     OPTGROUP(attributesMapOf("label", label,"class", classes), consumer).visit(block)
 }
@@ -188,7 +208,11 @@ val SELECT.asPhrasingContent : PhrasingContent
 
 
 @Suppress("unused")
-open class SLOT(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("slot", consumer, initialAttributes, null, false, false), HtmlInlineTag {
+interface I_SLOT {
+    val consumer : TagConsumer<*>
+}
+@Suppress("unused")
+open class SLOT(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : I_SLOT, HTMLTag("slot", consumer, initialAttributes, null, false, false), HtmlInlineTag {
     var name : String
         get()  = attributeStringString[this, "name"]
         set(newValue) {attributeStringString[this, "name"] = newValue}
@@ -197,7 +221,11 @@ open class SLOT(initialAttributes : Map<String, String>, override val consumer :
 }
 
 @Suppress("unused")
-open class SMALL(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("small", consumer, initialAttributes, null, true, false), HtmlBlockInlineTag {
+interface I_SMALL {
+    val consumer : TagConsumer<*>
+}
+@Suppress("unused")
+open class SMALL(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : I_SMALL, HTMLTag("small", consumer, initialAttributes, null, true, false), HtmlBlockInlineTag {
 
 }
 val SMALL.asFlowContent : FlowContent
@@ -208,7 +236,11 @@ val SMALL.asPhrasingContent : PhrasingContent
 
 
 @Suppress("unused")
-open class SOURCE(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("source", consumer, initialAttributes, null, true, true), CommonAttributeGroupFacade {
+interface I_SOURCE {
+    val consumer : TagConsumer<*>
+}
+@Suppress("unused")
+open class SOURCE(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : I_SOURCE, HTMLTag("source", consumer, initialAttributes, null, true, true), CommonAttributeGroupFacade {
     var src : String
         get()  = attributeStringString[this, "src"]
         set(newValue) {attributeStringString[this, "src"] = newValue}
@@ -229,7 +261,11 @@ open class SOURCE(initialAttributes : Map<String, String>, override val consumer
 }
 
 @Suppress("unused")
-open class SPAN(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("span", consumer, initialAttributes, null, true, false), HtmlBlockInlineTag {
+interface I_SPAN {
+    val consumer : TagConsumer<*>
+}
+@Suppress("unused")
+open class SPAN(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : I_SPAN, HTMLTag("span", consumer, initialAttributes, null, true, false), HtmlBlockInlineTag {
 
 }
 val SPAN.asFlowContent : FlowContent
@@ -240,7 +276,11 @@ val SPAN.asPhrasingContent : PhrasingContent
 
 
 @Suppress("unused")
-open class STRONG(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("strong", consumer, initialAttributes, null, true, false), HtmlBlockInlineTag {
+interface I_STRONG {
+    val consumer : TagConsumer<*>
+}
+@Suppress("unused")
+open class STRONG(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : I_STRONG, HTMLTag("strong", consumer, initialAttributes, null, true, false), HtmlBlockInlineTag {
 
 }
 val STRONG.asFlowContent : FlowContent
@@ -251,7 +291,11 @@ val STRONG.asPhrasingContent : PhrasingContent
 
 
 @Suppress("unused")
-open class STYLE(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("style", consumer, initialAttributes, null, false, false), CommonAttributeGroupFacadeFlowMetaDataContent {
+interface I_STYLE {
+    val consumer : TagConsumer<*>
+}
+@Suppress("unused")
+open class STYLE(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : I_STYLE, HTMLTag("style", consumer, initialAttributes, null, false, false), CommonAttributeGroupFacadeFlowMetaDataContent {
     var type : String
         get()  = attributeStringString[this, "type"]
         set(newValue) {attributeStringString[this, "type"] = newValue}
@@ -307,7 +351,11 @@ val STYLE.asMetaDataContent : MetaDataContent
 
 
 @Suppress("unused")
-open class SUB(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("sub", consumer, initialAttributes, null, true, false), HtmlBlockInlineTag {
+interface I_SUB {
+    val consumer : TagConsumer<*>
+}
+@Suppress("unused")
+open class SUB(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : I_SUB, HTMLTag("sub", consumer, initialAttributes, null, true, false), HtmlBlockInlineTag {
 
 }
 val SUB.asFlowContent : FlowContent
@@ -318,12 +366,20 @@ val SUB.asPhrasingContent : PhrasingContent
 
 
 @Suppress("unused")
-open class SUMMARY(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("summary", consumer, initialAttributes, null, true, false), CommonAttributeGroupFacadeFlowHeadingPhrasingContent {
+interface I_SUMMARY {
+    val consumer : TagConsumer<*>
+}
+@Suppress("unused")
+open class SUMMARY(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : I_SUMMARY, HTMLTag("summary", consumer, initialAttributes, null, true, false), CommonAttributeGroupFacadeFlowHeadingPhrasingContent {
 
 }
 
 @Suppress("unused")
-open class SUP(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("sup", consumer, initialAttributes, null, true, false), HtmlBlockInlineTag {
+interface I_SUP {
+    val consumer : TagConsumer<*>
+}
+@Suppress("unused")
+open class SUP(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : I_SUP, HTMLTag("sup", consumer, initialAttributes, null, true, false), HtmlBlockInlineTag {
 
 }
 val SUP.asFlowContent : FlowContent
@@ -334,7 +390,11 @@ val SUP.asPhrasingContent : PhrasingContent
 
 
 @Suppress("unused")
-open class SVG(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("svg", consumer, initialAttributes, "http://www.w3.org/2000/svg", false, false), HtmlBlockInlineTag {
+interface I_SVG {
+    val consumer : TagConsumer<*>
+}
+@Suppress("unused")
+open class SVG(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : I_SVG, HTMLTag("svg", consumer, initialAttributes, "http://www.w3.org/2000/svg", false, false), HtmlBlockInlineTag {
 
 }
 val SVG.asFlowContent : FlowContent

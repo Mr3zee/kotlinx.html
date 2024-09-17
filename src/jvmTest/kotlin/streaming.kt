@@ -454,6 +454,53 @@ class TestStreaming {
             </html>
         """.trimIndent(), x.trimEnd())
     }
+
+    @Test fun partial() {
+        fun I_TABLE.partialFragment() {
+            tr {
+                td {
+                    +"text"
+                }
+            }
+        }
+
+        val tr = createHTML().partial {
+            partialFragment()
+        }
+
+        assertEquals(
+        """
+            <tr>
+              <td>text</td>
+            </tr>
+        """.trimIndent(), tr.trimEnd())
+
+        val table = createHTML().table {
+            partialFragment()
+        }
+
+        assertEquals(
+            """
+            <table>
+              <tr>
+                <td>text</td>
+              </tr>
+            </table>
+        """.trimIndent(), table.trimEnd())
+
+        val trs = createHTML().partial {
+            tr { }
+            tr { }
+            tr { }
+        }
+
+        assertEquals(
+            """
+            <tr></tr>
+            <tr></tr>
+            <tr></tr>
+        """.trimIndent(), trs.trimEnd())
+    }
 }
 
 fun <T> TagConsumer<T>.buildMe() = html { body { buildMe2() } }

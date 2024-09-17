@@ -13,7 +13,11 @@ import kotlinx.html.attributes.*
 *******************************************************************************/
 
 @Suppress("unused")
-open class DATALIST(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("datalist", consumer, initialAttributes, null, true, false), HtmlBlockInlineTag {
+interface I_DATALIST {
+    val consumer : TagConsumer<*>
+}
+@Suppress("unused")
+open class DATALIST(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : I_DATALIST, HTMLTag("datalist", consumer, initialAttributes, null, true, false), HtmlBlockInlineTag {
 
 }
 /**
@@ -21,7 +25,7 @@ open class DATALIST(initialAttributes : Map<String, String>, override val consum
  */
 @HtmlTagMarker
 @OptIn(ExperimentalContracts::class)
-inline fun DATALIST.option(classes : String? = null, crossinline block : OPTION.() -> Unit = {}) : Unit {
+inline fun I_DATALIST.option(classes : String? = null, crossinline block : OPTION.() -> Unit = {}) : Unit {
     contract { callsInPlace(block, InvocationKind.EXACTLY_ONCE) }
     OPTION(attributesMapOf("class", classes), consumer).visit(block)
 }
@@ -29,7 +33,7 @@ inline fun DATALIST.option(classes : String? = null, crossinline block : OPTION.
  * Selectable choice
  */
 @HtmlTagMarker
-fun DATALIST.option(classes : String? = null, content : String = "") : Unit = OPTION(attributesMapOf("class", classes), consumer).visit({+content})
+fun I_DATALIST.option(classes : String? = null, content : String = "") : Unit = OPTION(attributesMapOf("class", classes), consumer).visit({+content})
 
 val DATALIST.asFlowContent : FlowContent
     get()  = this
@@ -39,12 +43,20 @@ val DATALIST.asPhrasingContent : PhrasingContent
 
 
 @Suppress("unused")
-open class DD(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("dd", consumer, initialAttributes, null, false, false), HtmlBlockTag {
+interface I_DD {
+    val consumer : TagConsumer<*>
+}
+@Suppress("unused")
+open class DD(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : I_DD, HTMLTag("dd", consumer, initialAttributes, null, false, false), HtmlBlockTag {
 
 }
 
 @Suppress("unused")
-open class DEL(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("del", consumer, initialAttributes, null, false, false), HtmlBlockInlineTag {
+interface I_DEL {
+    val consumer : TagConsumer<*>
+}
+@Suppress("unused")
+open class DEL(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : I_DEL, HTMLTag("del", consumer, initialAttributes, null, false, false), HtmlBlockInlineTag {
     var cite : String
         get()  = attributeStringString[this, "cite"]
         set(newValue) {attributeStringString[this, "cite"] = newValue}
@@ -63,7 +75,11 @@ val DEL.asPhrasingContent : PhrasingContent
 
 
 @Suppress("unused")
-open class DETAILS(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("details", consumer, initialAttributes, null, false, false), CommonAttributeGroupFacadeFlowInteractiveContent {
+interface I_DETAILS {
+    val consumer : TagConsumer<*>
+}
+@Suppress("unused")
+open class DETAILS(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : I_DETAILS, HTMLTag("details", consumer, initialAttributes, null, false, false), CommonAttributeGroupFacadeFlowInteractiveContent {
     var open : Boolean
         get()  = attributeBooleanTicker[this, "open"]
         set(newValue) {attributeBooleanTicker[this, "open"] = newValue}
@@ -75,7 +91,7 @@ open class DETAILS(initialAttributes : Map<String, String>, override val consume
  */
 @HtmlTagMarker
 @OptIn(ExperimentalContracts::class)
-inline fun DETAILS.legend(classes : String? = null, crossinline block : LEGEND.() -> Unit = {}) : Unit {
+inline fun I_DETAILS.legend(classes : String? = null, crossinline block : LEGEND.() -> Unit = {}) : Unit {
     contract { callsInPlace(block, InvocationKind.EXACTLY_ONCE) }
     LEGEND(attributesMapOf("class", classes), consumer).visit(block)
 }
@@ -88,7 +104,11 @@ val DETAILS.asInteractiveContent : InteractiveContent
 
 
 @Suppress("unused")
-open class DFN(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("dfn", consumer, initialAttributes, null, true, false), HtmlBlockInlineTag {
+interface I_DFN {
+    val consumer : TagConsumer<*>
+}
+@Suppress("unused")
+open class DFN(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : I_DFN, HTMLTag("dfn", consumer, initialAttributes, null, true, false), HtmlBlockInlineTag {
 
 }
 val DFN.asFlowContent : FlowContent
@@ -99,17 +119,29 @@ val DFN.asPhrasingContent : PhrasingContent
 
 
 @Suppress("unused")
-open class DIALOG(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("dialog", consumer, initialAttributes, null, false, false), HtmlBlockTag {
+interface I_DIALOG {
+    val consumer : TagConsumer<*>
+}
+@Suppress("unused")
+open class DIALOG(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : I_DIALOG, HTMLTag("dialog", consumer, initialAttributes, null, false, false), HtmlBlockTag {
 
 }
 
 @Suppress("unused")
-open class DIV(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("div", consumer, initialAttributes, null, false, false), HtmlBlockTag {
+interface I_DIV {
+    val consumer : TagConsumer<*>
+}
+@Suppress("unused")
+open class DIV(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : I_DIV, HTMLTag("div", consumer, initialAttributes, null, false, false), HtmlBlockTag {
 
 }
 
 @Suppress("unused")
-open class DL(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("dl", consumer, initialAttributes, null, false, false), HtmlBlockTag {
+interface I_DL {
+    val consumer : TagConsumer<*>
+}
+@Suppress("unused")
+open class DL(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : I_DL, HTMLTag("dl", consumer, initialAttributes, null, false, false), HtmlBlockTag {
 
 }
 /**
@@ -117,7 +149,7 @@ open class DL(initialAttributes : Map<String, String>, override val consumer : T
  */
 @HtmlTagMarker
 @OptIn(ExperimentalContracts::class)
-inline fun DL.dd(classes : String? = null, crossinline block : DD.() -> Unit = {}) : Unit {
+inline fun I_DL.dd(classes : String? = null, crossinline block : DD.() -> Unit = {}) : Unit {
     contract { callsInPlace(block, InvocationKind.EXACTLY_ONCE) }
     DD(attributesMapOf("class", classes), consumer).visit(block)
 }
@@ -127,14 +159,18 @@ inline fun DL.dd(classes : String? = null, crossinline block : DD.() -> Unit = {
  */
 @HtmlTagMarker
 @OptIn(ExperimentalContracts::class)
-inline fun DL.dt(classes : String? = null, crossinline block : DT.() -> Unit = {}) : Unit {
+inline fun I_DL.dt(classes : String? = null, crossinline block : DT.() -> Unit = {}) : Unit {
     contract { callsInPlace(block, InvocationKind.EXACTLY_ONCE) }
     DT(attributesMapOf("class", classes), consumer).visit(block)
 }
 
 
 @Suppress("unused")
-open class DT(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("dt", consumer, initialAttributes, null, false, false), HtmlInlineTag {
+interface I_DT {
+    val consumer : TagConsumer<*>
+}
+@Suppress("unused")
+open class DT(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : I_DT, HTMLTag("dt", consumer, initialAttributes, null, false, false), HtmlInlineTag {
 
 }
 

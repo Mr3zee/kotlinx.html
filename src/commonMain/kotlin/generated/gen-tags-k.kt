@@ -13,7 +13,11 @@ import kotlinx.html.attributes.*
 *******************************************************************************/
 
 @Suppress("unused")
-open class KBD(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("kbd", consumer, initialAttributes, null, true, false), HtmlBlockInlineTag {
+interface I_KBD {
+    val consumer : TagConsumer<*>
+}
+@Suppress("unused")
+open class KBD(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : I_KBD, HTMLTag("kbd", consumer, initialAttributes, null, true, false), HtmlBlockInlineTag {
 
 }
 val KBD.asFlowContent : FlowContent
@@ -24,7 +28,11 @@ val KBD.asPhrasingContent : PhrasingContent
 
 
 @Suppress("unused")
-open class KEYGEN(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("keygen", consumer, initialAttributes, null, true, true), CommonAttributeGroupFacadeFlowInteractivePhrasingContent {
+interface I_KEYGEN {
+    val consumer : TagConsumer<*>
+}
+@Suppress("unused")
+open class KEYGEN(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : I_KEYGEN, HTMLTag("keygen", consumer, initialAttributes, null, true, true), CommonAttributeGroupFacadeFlowInteractivePhrasingContent {
     var autoFocus : Boolean
         get()  = attributeBooleanTicker[this, "autofocus"]
         set(newValue) {attributeBooleanTicker[this, "autofocus"] = newValue}

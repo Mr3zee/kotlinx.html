@@ -13,12 +13,20 @@ import kotlinx.html.attributes.*
 *******************************************************************************/
 
 @Suppress("unused")
-open class MAIN(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("main", consumer, initialAttributes, null, false, false), CommonAttributeGroupFacadeFlowPhrasingSectioningContent {
+interface I_MAIN {
+    val consumer : TagConsumer<*>
+}
+@Suppress("unused")
+open class MAIN(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : I_MAIN, HTMLTag("main", consumer, initialAttributes, null, false, false), CommonAttributeGroupFacadeFlowPhrasingSectioningContent {
 
 }
 
 @Suppress("unused")
-open class MAP(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("map", consumer, initialAttributes, null, true, false), HtmlBlockInlineTag {
+interface I_MAP {
+    val consumer : TagConsumer<*>
+}
+@Suppress("unused")
+open class MAP(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : I_MAP, HTMLTag("map", consumer, initialAttributes, null, true, false), HtmlBlockInlineTag {
     var name : String
         get()  = attributeStringString[this, "name"]
         set(newValue) {attributeStringString[this, "name"] = newValue}
@@ -33,7 +41,11 @@ val MAP.asPhrasingContent : PhrasingContent
 
 
 @Suppress("unused")
-open class MARK(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("mark", consumer, initialAttributes, null, true, false), HtmlBlockInlineTag {
+interface I_MARK {
+    val consumer : TagConsumer<*>
+}
+@Suppress("unused")
+open class MARK(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : I_MARK, HTMLTag("mark", consumer, initialAttributes, null, true, false), HtmlBlockInlineTag {
 
 }
 val MARK.asFlowContent : FlowContent
@@ -44,7 +56,11 @@ val MARK.asPhrasingContent : PhrasingContent
 
 
 @Suppress("unused")
-open class MATH(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("math", consumer, initialAttributes, null, false, false), HtmlBlockInlineTag {
+interface I_MATH {
+    val consumer : TagConsumer<*>
+}
+@Suppress("unused")
+open class MATH(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : I_MATH, HTMLTag("math", consumer, initialAttributes, null, false, false), HtmlBlockInlineTag {
 
 }
 val MATH.asFlowContent : FlowContent
@@ -55,12 +71,20 @@ val MATH.asPhrasingContent : PhrasingContent
 
 
 @Suppress("unused")
-open class MATHML(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("mathml", consumer, initialAttributes, null, false, false), CommonAttributeGroupFacade {
+interface I_MATHML {
+    val consumer : TagConsumer<*>
+}
+@Suppress("unused")
+open class MATHML(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : I_MATHML, HTMLTag("mathml", consumer, initialAttributes, null, false, false), CommonAttributeGroupFacade {
 
 }
 
 @Suppress("unused")
-open class META(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("meta", consumer, initialAttributes, null, false, true), CommonAttributeGroupFacadeFlowMetaDataPhrasingContent {
+interface I_META {
+    val consumer : TagConsumer<*>
+}
+@Suppress("unused")
+open class META(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : I_META, HTMLTag("meta", consumer, initialAttributes, null, false, true), CommonAttributeGroupFacadeFlowMetaDataPhrasingContent {
     var httpEquiv : String
         get()  = attributeStringString[this, "http-equiv"]
         set(newValue) {attributeStringString[this, "http-equiv"] = newValue}
@@ -90,7 +114,11 @@ val META.asPhrasingContent : PhrasingContent
 
 
 @Suppress("unused")
-open class METER(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("meter", consumer, initialAttributes, null, true, false), HtmlBlockInlineTag {
+interface I_METER {
+    val consumer : TagConsumer<*>
+}
+@Suppress("unused")
+open class METER(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : I_METER, HTMLTag("meter", consumer, initialAttributes, null, true, false), HtmlBlockInlineTag {
     var value : String
         get()  = attributeStringString[this, "value"]
         set(newValue) {attributeStringString[this, "value"] = newValue}

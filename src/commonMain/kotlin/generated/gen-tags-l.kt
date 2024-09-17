@@ -13,7 +13,11 @@ import kotlinx.html.attributes.*
 *******************************************************************************/
 
 @Suppress("unused")
-open class LABEL(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("label", consumer, initialAttributes, null, true, false), CommonAttributeGroupFacadeFlowInteractivePhrasingContent {
+interface I_LABEL {
+    val consumer : TagConsumer<*>
+}
+@Suppress("unused")
+open class LABEL(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : I_LABEL, HTMLTag("label", consumer, initialAttributes, null, true, false), CommonAttributeGroupFacadeFlowInteractivePhrasingContent {
     var form : String
         get()  = attributeStringString[this, "form"]
         set(newValue) {attributeStringString[this, "form"] = newValue}
@@ -35,7 +39,11 @@ val LABEL.asPhrasingContent : PhrasingContent
 
 
 @Suppress("unused")
-open class LEGEND(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("legend", consumer, initialAttributes, null, true, false), HtmlBlockInlineTag {
+interface I_LEGEND {
+    val consumer : TagConsumer<*>
+}
+@Suppress("unused")
+open class LEGEND(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : I_LEGEND, HTMLTag("legend", consumer, initialAttributes, null, true, false), HtmlBlockInlineTag {
 
 }
 val LEGEND.asFlowContent : FlowContent
@@ -46,7 +54,11 @@ val LEGEND.asPhrasingContent : PhrasingContent
 
 
 @Suppress("unused")
-open class LI(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("li", consumer, initialAttributes, null, false, false), HtmlBlockTag {
+interface I_LI {
+    val consumer : TagConsumer<*>
+}
+@Suppress("unused")
+open class LI(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : I_LI, HTMLTag("li", consumer, initialAttributes, null, false, false), HtmlBlockTag {
     var value : String
         get()  = attributeStringString[this, "value"]
         set(newValue) {attributeStringString[this, "value"] = newValue}
@@ -55,7 +67,11 @@ open class LI(initialAttributes : Map<String, String>, override val consumer : T
 }
 
 @Suppress("unused")
-open class LINK(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : HTMLTag("link", consumer, initialAttributes, null, false, true), CommonAttributeGroupFacadeFlowMetaDataPhrasingContent {
+interface I_LINK {
+    val consumer : TagConsumer<*>
+}
+@Suppress("unused")
+open class LINK(initialAttributes : Map<String, String>, override val consumer : TagConsumer<*>) : I_LINK, HTMLTag("link", consumer, initialAttributes, null, false, true), CommonAttributeGroupFacadeFlowMetaDataPhrasingContent {
     var href : String
         get()  = attributeStringString[this, "href"]
         set(newValue) {attributeStringString[this, "href"] = newValue}
